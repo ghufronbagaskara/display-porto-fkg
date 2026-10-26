@@ -24,7 +24,7 @@ const root=document.getElementById('viewport');
 function createWatermarkTile(scale=1){
  const tile=document.createElement('canvas');tile.width=180*scale;tile.height=110*scale;
  const context=tile.getContext('2d');context.scale(scale,scale);context.translate(90,55);context.rotate(-Math.PI/7);
- context.font='600 20px "Trebuchet MS",sans-serif';context.textAlign='center';context.textBaseline='middle';context.fillStyle='#3d3028';context.globalAlpha=.085;
+ context.font='600 20px "Trebuchet MS",sans-serif';context.textAlign='center';context.textBaseline='middle';context.fillStyle='#3d3028';context.globalAlpha=.2;
  context.fillText('Katalhys',0,0);return tile;
 }
 const watermarkBackground=createWatermarkTile().toDataURL('image/png');

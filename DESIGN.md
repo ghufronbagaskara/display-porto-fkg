@@ -6,7 +6,7 @@ Konsep portofolio fiktif dengan pendekatan katalog interior: tipografi tenang, d
 
 - Nama tampilan: Katalhys Dental Studio; penanda PORTOFOLIO / 001.
 - Logo monokrom hitam dan favicon asli berasal dari proyek landing Katalhys pengguna. Simbol tidak digambar ulang.
-- Watermark Katalhys memakai pola diagonal 180 × 110px, font 20px, opacity 8,5%; mencakup seluruh layar, dialog mobile, dan ekspor PNG.
+- Watermark Katalhys memakai pola diagonal 180 × 110px, font 20px, opacity 20%; mencakup seluruh layar, dialog mobile, dan ekspor PNG.
 - Ink `#3d3028`, terracotta `#a45138`, paper `#faf5ed`, cream `#eee2d1`, muted `#746356`.
 - Area luar, background scene, dan fog menggunakan cream. Tidak ada tepi atau latar sage.
 - Upholstery teal dipetakan ke `#a65d46`; biru ke `#967864`; coral ke `#c08464`.

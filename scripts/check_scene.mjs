@@ -41,7 +41,7 @@ assert.equal((html.match(/class="watermark" aria-hidden="true"/g)??[]).length,2,
 for(const name of ['katalhys-symbol.svg','favicon.svg','favicon.png','apple-touch-icon.png'])assert.ok((await stat(new URL('../assets/brand/'+name,import.meta.url))).size>0);
 const tile=clinic.createWatermarkTile(2),tileContext=tile.getContext('2d');
 assert.equal(tile.width,360);assert.equal(tile.height,220);
-assert.equal(tileContext.globalAlpha,.085,'Watermark must stay subtle');
+assert.equal(tileContext.globalAlpha,.2,'Watermark must remain visible over the design');
 assert.ok(tileContext.calls.some(([method,text])=>method==='fillText'&&text==='Katalhys'));
 const exportCanvas=clinic.renderWatermarkedPng(),exportCalls=exportCanvas.getContext('2d').calls;
 assert.equal(exportCanvas.width,canvas.width);assert.equal(exportCanvas.height,canvas.height);

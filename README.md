@@ -44,7 +44,7 @@ Repository ini berisi `package.json` dan `index.html` langsung di root.
 
 Logo hitam monokrom, favicon SVG/PNG, dan Apple touch icon disalin dari proyek landing Katalhys milik pengguna (`renoir-landing`). Aset brand ini terpisah dari lisensi CC0 model dental.
 
-Tulisan Katalhys berulang secara diagonal setiap 180 × 110 CSS px dengan opacity 8,5%. Overlay menutupi seluruh viewport, termasuk sidebar, dan juga tersedia di dialog mobile. Overlay memakai `pointer-events: none` dan disembunyikan dari pembaca layar. Pola yang sama dikomposisikan di atas hasil renderer sebelum ekspor PNG; proses ekspor dibatalkan jika pola gagal dibuat. Palet klinik dipertahankan.
+Tulisan Katalhys berulang secara diagonal setiap 180 × 110 CSS px dengan opacity 20%. Overlay menutupi seluruh viewport, termasuk sidebar, dan juga tersedia di dialog mobile. Overlay memakai `pointer-events: none` dan disembunyikan dari pembaca layar. Pola yang sama dikomposisikan di atas hasil renderer sebelum ekspor PNG; proses ekspor dibatalkan jika pola gagal dibuat. Palet klinik dipertahankan.
 
 ## Susunan ruang
 
