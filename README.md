@@ -1,4 +1,4 @@
-# NARA Dental Studio
+# Katalhys Dental Studio
 
 Konsep fiktif klinik gigi untuk portofolio visualisasi 3D. Identitas, sidebar, palet terracotta-krem, material lantai, dan susunan ruang dibuat sebagai studi portofolio tersendiri.
 
@@ -12,7 +12,7 @@ Klik dua kali `index.html`. Bundle sudah memuat renderer dan 56 aset GLB, sehing
 - Pilih ruang melalui daftar atau lantainya.
 - Dinding: ganti tinggi dinding.
 - Reset: kembalikan kamera dan pilihan ruang.
-- Simpan PNG: ekspor gambar dengan nama Nara-Dental-Studio.
+- Simpan PNG: ekspor gambar dengan nama Katalhys-Dental-Studio dan watermark yang menyatu dengan gambar.
 - Pada layar di bawah 850px, dialog menyarankan penggunaan desktop.
 
 ## Pengembangan
@@ -38,7 +38,13 @@ Repository ini berisi `package.json` dan `index.html` langsung di root.
 | Build Command | `npm run build` |
 | Output Directory | `dist` |
 
-`vercel.json` sudah mengatur framework, build, dan output. Output publik hanya berisi HTML dan bundle. Tidak perlu menjalankan skrip pengunduh aset saat deployment.
+`vercel.json` sudah mengatur framework, build, dan output. Output publik berisi HTML, bundle, serta aset logo/favicon di `assets/brand/`. Tidak perlu menjalankan skrip pengunduh aset saat deployment.
+
+## Identitas dan watermark
+
+Logo hitam monokrom, favicon SVG/PNG, dan Apple touch icon disalin dari proyek landing Katalhys milik pengguna (`renoir-landing`). Aset brand ini terpisah dari lisensi CC0 model dental.
+
+Tulisan Katalhys berulang secara diagonal setiap 180 × 110 CSS px dengan opacity 8,5%. Overlay menutupi seluruh viewport, termasuk sidebar, dan juga tersedia di dialog mobile. Overlay memakai `pointer-events: none` dan disembunyikan dari pembaca layar. Pola yang sama dikomposisikan di atas hasil renderer sebelum ekspor PNG; proses ekspor dibatalkan jika pola gagal dibuat. Palet klinik dipertahankan.
 
 ## Susunan ruang
 

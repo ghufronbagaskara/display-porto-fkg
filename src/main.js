@@ -21,6 +21,14 @@ const spaces = [
 const visibleRooms=spaces.filter(s=>!s.id.includes('hall'));
 const roomById=new Map(spaces.map(s=>[s.id,s]));
 const root=document.getElementById('viewport');
+function createWatermarkTile(scale=1){
+ const tile=document.createElement('canvas');tile.width=180*scale;tile.height=110*scale;
+ const context=tile.getContext('2d');context.scale(scale,scale);context.translate(90,55);context.rotate(-Math.PI/7);
+ context.font='600 20px "Trebuchet MS",sans-serif';context.textAlign='center';context.textBaseline='middle';context.fillStyle='#3d3028';context.globalAlpha=.085;
+ context.fillText('Katalhys',0,0);return tile;
+}
+const watermarkBackground=createWatermarkTile().toDataURL('image/png');
+document.querySelectorAll('.watermark').forEach(overlay=>{overlay.style.backgroundImage=`url("${watermarkBackground}")`;});
 const mobileNotice=document.getElementById('mobileNotice');
 const smallScreen=window.matchMedia('(max-width: 850px)');
 let mobileNoticeDismissed=false;
@@ -175,7 +183,15 @@ document.getElementById('wallBtn').onclick=()=>{cutaway=!cutaway;walls.scale.y=c
 walls.scale.y=.27;
 overhead.visible=false;
 document.getElementById('resetBtn').onclick=()=>{hover=null;select(null);setView('3d');};
-document.getElementById('pngBtn').onclick=()=>{renderer.render(scene,current);try{let a=document.createElement('a');a.download='Nara-Dental-Studio-'+view+'.png';a.href=renderer.domElement.toDataURL('image/png');a.click();}catch(e){console.warn(e);}};
+function renderWatermarkedPng(){
+ renderer.render(scene,current);
+ const output=document.createElement('canvas');output.width=renderer.domElement.width;output.height=renderer.domElement.height;
+ const context=output.getContext('2d');context.drawImage(renderer.domElement,0,0);
+ const pattern=context.createPattern(createWatermarkTile(renderer.getPixelRatio()),'repeat');
+ if(!pattern)throw new Error('Watermark tidak dapat dibuat. Ekspor dibatalkan.');
+ context.fillStyle=pattern;context.fillRect(0,0,output.width,output.height);return output;
+}
+document.getElementById('pngBtn').onclick=()=>{try{const output=renderWatermarkedPng(),a=document.createElement('a');a.download='Katalhys-Dental-Studio-'+view+'.png';a.href=output.toDataURL('image/png');a.click();}catch(e){console.warn(e);}};
 const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
 function pick(e){let r=renderer.domElement.getBoundingClientRect();mouse.set(2*(e.clientX-r.left)/r.width-1,1-2*(e.clientY-r.top)/r.height);ray.setFromCamera(mouse,current);let intersects=ray.intersectObjects(colliders);return intersects[0]?.object.userData.room||null;}
 let down=null;

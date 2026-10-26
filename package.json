@@ -1,9 +1,9 @@
 {
-  "name": "nara-dental-studio-portfolio",
+  "name": "katalhys-dental-studio-portfolio",
   "version": "3.0.0",
   "private": true,
   "type": "module",
-  "description": "Interactive 3D dental interior portfolio concept for NARA Dental Studio",
+  "description": "Interactive 3D dental interior portfolio concept for KATALHYS Dental Studio",
   "scripts": {
     "build": "esbuild src/main.js --bundle --minify --format=iife --platform=browser --target=es2020 --outfile=app.bundle.js",
     "postbuild": "node scripts/package_site.mjs",

@@ -7,14 +7,15 @@ import {MODEL_DATA} from '../src/embedded-assets.js';
 
 // Real geometry and GLB parsing; DOM/WebGL stand-ins keep this check runnable without a browser.
 const size={width:1100,height:850};
-const context2d=new Proxy({}, {get:()=>()=>{}});
+function canvasContext(){return new Proxy({calls:[],createPattern(image,repetition){this.calls.push(['createPattern',image,repetition]);return {image,repetition};}}, {get(target,key){if(key in target)return target[key];return (...args)=>target.calls.push([key,...args]);}});}
 const elements=new Map();
-function element(){return {style:{},dataset:{},children:[],listeners:{},open:false,classList:{toggle(){}},appendChild(child){this.children.push(child);},querySelectorAll(){return this.children;},addEventListener(type,handler){(this.listeners[type]??=[]).push(handler);},showModal(){this.open=true;},close(){this.open=false;this.listeners.close?.forEach(handler=>handler());},getBoundingClientRect:()=>size,getContext:()=>context2d};}
+function element(){const context=canvasContext();return {style:{},dataset:{},children:[],listeners:{},open:false,classList:{toggle(){}},appendChild(child){this.children.push(child);},querySelectorAll(){return this.children;},addEventListener(type,handler){(this.listeners[type]??=[]).push(handler);},showModal(){this.open=true;},close(){this.open=false;this.listeners.close?.forEach(handler=>handler());},getBoundingClientRect:()=>size,getContext:()=>context,toDataURL:()=> 'data:image/png;base64,test',click(){}};}
 const document={getElementById(id){if(!elements.has(id))elements.set(id,element());return elements.get(id);},createElement:element,querySelectorAll:()=>[]};
 let renders=0;
 class Renderer{
  constructor(){this.domElement=element();this.shadowMap={};this.capabilities={getMaxAnisotropy:()=>4};}
- setPixelRatio(){} setSize(){} render(){renders++;}
+ setPixelRatio(value){this.pixelRatio=value;} getPixelRatio(){return this.pixelRatio;}
+ setSize(width,height){this.domElement.width=Math.round(width*this.pixelRatio);this.domElement.height=Math.round(height*this.pixelRatio);} render(){renders++;}
 }
 class Controls extends THREE.EventDispatcher{
  constructor(camera){super();this.object=camera;this.target=new THREE.Vector3();}
@@ -25,15 +26,32 @@ const sandbox={THREE:{...THREE,WebGLRenderer:Renderer},OrbitControls:Controls,GL
 vm.createContext(sandbox);
 let source=await readFile(new URL('../src/main.js',import.meta.url),'utf8');
 source=source.replace(/^import .*;\r?\n/gm,'').replace('load().catch(', 'const loaded=load();loaded.catch(');
-vm.runInContext(source+'\nglobalThis.clinic={loaded,scene,props,spaces,camera,planCamera,control,setView,resize,select,frame,sunlight,updateMobileNotice};',sandbox);
+vm.runInContext(source+'\nglobalThis.clinic={loaded,scene,props,spaces,camera,planCamera,control,setView,resize,select,frame,sunlight,updateMobileNotice,createWatermarkTile,renderWatermarkedPng};',sandbox);
 const clinic=sandbox.clinic;
 await clinic.loaded;
 const canvas=document.getElementById('viewport').children[0];
 assert.equal(canvas.id,'scene','Canvas must receive the CSS sizing rule at non-1 device pixel ratios');
 const html=await readFile(new URL('../index.html',import.meta.url),'utf8');
 assert.match(html,/#scene\{[^}]*width:100%;[^}]*height:100%/,'Canvas CSS must fit its panel');
-assert.doesNotMatch(html,/elora/i,'Portfolio must use its own identity');
-assert.match(html,/<title>NARA Dental Studio/);
+assert.doesNotMatch(html,/elora|nara/i,'Portfolio must use its own identity');
+assert.match(html,/<title>Katalhys Dental Studio/);
+assert.match(html,/<link rel="icon" type="image\/svg\+xml" href="assets\/brand\/favicon.svg"/);
+assert.match(html,/\.watermark\{[^}]*pointer-events:none/,'Watermarks must not block controls');
+assert.equal((html.match(/class="watermark" aria-hidden="true"/g)??[]).length,2,'Screen and mobile dialog need watermarks');
+for(const name of ['katalhys-symbol.svg','favicon.svg','favicon.png','apple-touch-icon.png'])assert.ok((await stat(new URL('../assets/brand/'+name,import.meta.url))).size>0);
+const tile=clinic.createWatermarkTile(2),tileContext=tile.getContext('2d');
+assert.equal(tile.width,360);assert.equal(tile.height,220);
+assert.equal(tileContext.globalAlpha,.085,'Watermark must stay subtle');
+assert.ok(tileContext.calls.some(([method,text])=>method==='fillText'&&text==='Katalhys'));
+const exportCanvas=clinic.renderWatermarkedPng(),exportCalls=exportCanvas.getContext('2d').calls;
+assert.equal(exportCanvas.width,canvas.width);assert.equal(exportCanvas.height,canvas.height);
+assert.deepEqual(exportCalls.map(([method])=>method),['drawImage','createPattern','fillRect'],'PNG must composite the watermark over the rendered model');
+assert.equal(exportCalls[1][2],'repeat');
+assert.deepEqual(exportCalls[2].slice(1),[0,0,canvas.width,canvas.height],'Pattern must cover the full export');
+const originalCreateElement=document.createElement;
+document.createElement=()=>{const el=element();el.getContext().createPattern=()=>null;return el;};
+assert.throws(()=>clinic.renderWatermarkedPng(),/Ekspor dibatalkan/,'Export must not silently omit the watermark');
+document.createElement=originalCreateElement;
 assert.equal(clinic.scene.background.getHexString(),'eee2d1');
 assert.equal(clinic.scene.fog.color.getHexString(),'eee2d1');
 assert.equal(clinic.scene.getObjectByName('exterior-ground').material.color.getHexString(),'eee2d1');

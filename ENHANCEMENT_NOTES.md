@@ -1,10 +1,10 @@
-# NARA: catatan portofolio
+# Katalhys: catatan portofolio
 
 Tanggal: 26 Oktober 2026.
 
 ## Perubahan konsep
 
-Nama, judul browser, copy sidebar, paket aplikasi, nama ekspor PNG, loading state, dan identitas scene memakai NARA Dental Studio. UI secara eksplisit menyebutnya konsep fiktif untuk portofolio.
+Nama, judul browser, copy sidebar, paket aplikasi, nama ekspor PNG, loading state, dan identitas scene memakai KATALHYS Dental Studio. UI secara eksplisit menyebutnya konsep fiktif untuk portofolio.
 
 Sidebar diganti menjadi katalog berwarna paper dengan aksen terracotta, daftar bernomor, luas ruang, serta mode Orbit/Denah/Interior. Latar luar, fog, dan ground memakai krem. Furnitur beraksen teal/biru/coral dipetakan ulang ke warna tanah; tanaman tetap berwarna alami.
 
@@ -34,10 +34,18 @@ Scene memuat sekitar 130 ribu segitiga dan 960 mesh. Aset GLB berjumlah 2.106.79
 Konsep tetap merupakan studi visual, bukan rancangan bangunan klinis yang siap dibangun. Dimensi merupakan asumsi, dan audit seluruh kemungkinan overlap antarperabot belum dilakukan.
 
 
-## Verifikasi perubahan NARA
+## Verifikasi perubahan KATALHYS
 
 - Build esbuild dan npm test lolos. Pemeriksaan Node mencakup identitas, background/fog/ground krem, upholstery terracotta, luas total 216 m², ruang tanpa overlap, serta posisi alat setelah perpindahan ruang.
 - Browser bawaan menampilkan seluruh model tanpa error/warning konsol. Semua sepuluh pilihan ruang, mode Denah dan Interior, dinding rendah/penuh, serta Reset diperiksa.
 - Pada viewport 390×844, dialog desktop tampil, kanvas sesuai panel, dan tidak ada overflow horizontal. Screenshot desktop, mobile, serta denah diperbarui.
-- Verifikasi unduhan Simpan PNG lewat otomasi browser terhenti karena timeout, sehingga unduhan belum dikonfirmasi. Nama ekspor pada source sudah menjadi Nara-Dental-Studio.
+- Verifikasi unduhan Simpan PNG lewat otomasi browser terhenti karena timeout, sehingga unduhan belum dikonfirmasi. Nama ekspor pada source sudah menjadi Katalhys-Dental-Studio.
 - Deploy Vercel dan pengukuran FPS perangkat belum dilakukan.
+
+## Identitas studio dan watermark
+
+Identitas diganti menjadi Katalhys Dental Studio. Logo monokrom hitam dari `public/brand/katalhys-symbol-mono.svg`, favicon SVG/PNG, serta Apple touch icon diambil dari proyek `renoir-landing` milik pengguna tanpa mengubah proyek sumber. Output deployment menyalin empat file ini ke `dist/assets/brand/`.
+
+Watermark berupa pola tulisan Katalhys diagonal, berulang per 180 × 110px dengan opacity 8,5%, di seluruh viewport dan dialog mobile. Canvas tile dipakai bersama untuk overlay dan komposit ekspor PNG. Ekspor memakai skala pixel ratio renderer; jika pola tidak tersedia, ekspor dibatalkan agar tidak menghasilkan gambar tanpa watermark.
+
+Tes Node memeriksa ejaan, ukuran tile dan opacity, urutan komposit model lalu watermark, pengulangan pola, cakupan seluruh gambar, serta pembatalan ekspor ketika pembuatan pola gagal. Browser bawaan memverifikasi logo termuat, favicon direferensikan, overlay memenuhi viewport dan tidak menangkap klik, serta mode Denah/Reset tetap bekerja. Pada viewport 390 × 844, watermark terlihat di dialog, tombol lanjut bekerja, dan tidak ada overflow horizontal. Tidak ada warning/error konsol selama pemeriksaan ini. Unduhan PNG melalui browser tetap belum diverifikasi; logika kompositnya diuji dengan canvas stand-in.

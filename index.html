@@ -4,8 +4,11 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="theme-color" content="#eee2d1"/>
-  <meta name="description" content="NARA Dental Studio, studi konsep interior klinik gigi interaktif untuk portofolio visualisasi 3D."/>
-  <title>NARA Dental Studio | Portofolio Interior 3D</title>
+  <meta name="description" content="KATALHYS Dental Studio, studi konsep interior klinik gigi interaktif untuk portofolio visualisasi 3D."/>
+  <title>Katalhys Dental Studio | Portofolio Interior 3D</title>
+  <link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg"/>
+  <link rel="icon" type="image/png" href="assets/brand/favicon.png"/>
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"/>
   <style>
     :root{color-scheme:light;--ink:#3d3028;--muted:#746356;--accent:#a45138;--line:#dfd0bf;--paper:#faf5ed;--cream:#eee2d1;font-family:"Trebuchet MS","Segoe UI",sans-serif}
     *{box-sizing:border-box}
@@ -17,8 +20,9 @@
     .sidebar{background:var(--paper);border-right:1px solid var(--line);padding:26px 24px 18px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
     .project-meta{display:flex;justify-content:space-between;color:var(--accent);font-size:10px;font-weight:700;letter-spacing:.11em}
     .brandline{padding:25px 0 19px;border-bottom:1px solid var(--line)}
-    .brand{font:500 59px/.95 Georgia,serif;letter-spacing:-.07em;margin:0;color:var(--ink)}
-    .subbrand{font-size:11px;letter-spacing:.23em;margin-top:12px;font-weight:700}
+    .brand{display:flex;align-items:center;gap:12px;font:500 34px/1 Georgia,serif;letter-spacing:-.05em;margin:0;color:#17191c}
+    .brand-mark{width:44px;height:44px;flex:none}
+    .subbrand{font-size:11px;letter-spacing:.23em;margin:10px 0 0 56px;font-weight:700}
     .intro{font-size:12px;line-height:1.65;color:var(--muted);margin:15px 0 0;max-width:34ch}
     .eyebrow{font-size:10px;letter-spacing:.1em;font-weight:700;color:var(--muted)}
     .view-section{padding:20px 0 16px}
@@ -71,8 +75,10 @@
     .desktop-notice h2{font:500 27px/1.2 Georgia,serif;margin:0 0 14px}
     .desktop-notice p{font-size:14px;line-height:1.65;color:#685243;margin:0 0 14px}
     .desktop-notice button{width:100%;min-height:48px;border:0;border-radius:5px;background:#713d2b;color:var(--paper);padding:12px 16px;font-weight:650;margin-top:8px}
-    @media(max-width:1100px) and (min-width:851px){.shell{grid-template-columns:290px minmax(0,1fr)}.sidebar{padding-inline:20px}.topbar{inset:22px 20px auto;flex-direction:column}.toolbar{justify-content:flex-start}.brand{font-size:53px}}
-    @media(max-width:850px){.shell{height:auto;min-height:100dvh;grid-template-columns:1fr;grid-template-rows:minmax(460px,70dvh) auto}.sidebar{grid-row:2;border-right:0;border-top:1px solid var(--line);padding:25px 22px}.main{grid-row:1}.brandline{padding-top:20px}.brand{font-size:50px}.intro{max-width:50ch}.directory{min-height:260px}.rooms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;overflow:visible}.room{min-height:48px}.area{display:none}.topbar{inset:18px 16px auto;flex-direction:column;gap:14px}.toolbar{justify-content:flex-start}.tool{min-height:44px}.toplabel small{font-size:10px}.bottom{inset:auto 16px 16px}.badge{display:none}.details{min-height:96px}}
+    .watermark{position:fixed;inset:0;z-index:30;pointer-events:none;user-select:none;background-repeat:repeat;background-size:180px 110px}
+    .desktop-notice>.watermark{position:absolute;z-index:1}
+    @media(max-width:1100px) and (min-width:851px){.shell{grid-template-columns:290px minmax(0,1fr)}.sidebar{padding-inline:20px}.topbar{inset:22px 20px auto;flex-direction:column}.toolbar{justify-content:flex-start}.brand{font-size:32px}}
+    @media(max-width:850px){.shell{height:auto;min-height:100dvh;grid-template-columns:1fr;grid-template-rows:minmax(460px,70dvh) auto}.sidebar{grid-row:2;border-right:0;border-top:1px solid var(--line);padding:25px 22px}.main{grid-row:1}.brandline{padding-top:20px}.brand{font-size:36px}.intro{max-width:50ch}.directory{min-height:260px}.rooms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;overflow:visible}.room{min-height:48px}.area{display:none}.topbar{inset:18px 16px auto;flex-direction:column;gap:14px}.toolbar{justify-content:flex-start}.tool{min-height:44px}.toplabel small{font-size:10px}.bottom{inset:auto 16px 16px}.badge{display:none}.details{min-height:96px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
@@ -81,7 +87,7 @@
     <aside class="sidebar" aria-label="Informasi proyek dan daftar ruang">
       <div class="project-meta"><span>PORTOFOLIO / 001</span><span>2026</span></div>
       <header class="brandline">
-        <h1 class="brand">NARA<span style="color:var(--accent)">.</span></h1>
+        <h1 class="brand"><img class="brand-mark" src="assets/brand/katalhys-symbol.svg" width="44" height="44" alt=""/><span>Katalhys</span></h1>
         <div class="subbrand">DENTAL STUDIO</div>
         <p class="intro">Studi interior klinik gigi dalam nuansa tanah, batu, dan kayu. Jelajahi setiap ruang dari sudut pandang Anda.</p>
       </header>
@@ -97,20 +103,22 @@
       <div class="facts"><div class="fact"><b>216 m²</b><span>Luas konsep</span></div><div class="fact"><b>03</b><span>Unit dental</span></div><div class="fact"><b>10</b><span>Ruang</span></div></div>
       <div class="portfolio-note">Konsep fiktif untuk portofolio visualisasi 3D.<br/>Bukan rancangan konstruksi atau fasilitas berizin.</div>
     </aside>
-    <main class="main" id="stage" aria-label="Model 3D NARA Dental Studio">
+    <main class="main" id="stage" aria-label="Model 3D KATALHYS Dental Studio">
       <div class="viewport" id="viewport"></div>
-      <div class="topbar"><div class="toplabel"><strong>NARA / STUDI SPASIAL</strong><small id="viewHint">Geser untuk memutar · Gulir untuk memperbesar</small></div><div class="toolbar"><button class="tool" id="wallBtn">Dinding: rendah</button><button class="tool" id="resetBtn">Reset</button><button class="tool" id="pngBtn">Simpan PNG</button></div></div>
+      <div class="topbar"><div class="toplabel"><strong>KATALHYS / STUDI SPASIAL</strong><small id="viewHint">Geser untuk memutar · Gulir untuk memperbesar</small></div><div class="toolbar"><button class="tool" id="wallBtn">Dinding: rendah</button><button class="tool" id="resetBtn">Reset</button><button class="tool" id="pngBtn">Simpan PNG</button></div></div>
       <div class="bottom"><div class="bottom-note"><strong>Terra collection</strong>Material hangat. Cahaya alami. Ruang untuk merawat.</div><div class="badge">KONSEP INTERIOR / 01</div></div>
-      <div class="loader" id="loader" role="status"><strong>Menyiapkan NARA.</strong><p id="progressLabel">Memuat model dan material interior…</p><div class="track"><div class="fill" id="progressBar"></div></div></div>
+      <div class="loader" id="loader" role="status"><strong>Menyiapkan KATALHYS.</strong><p id="progressLabel">Memuat model dan material interior…</p><div class="track"><div class="fill" id="progressBar"></div></div></div>
       <div class="unsupported" id="unsupported"><div><strong>WebGL diperlukan</strong><p>Aktifkan akselerasi grafis atau gunakan browser yang mendukung WebGL untuk menjelajahi model.</p></div></div>
     </main>
   </div>
+  <div class="watermark" aria-hidden="true"></div>
   <dialog id="mobileNotice" class="desktop-notice" aria-labelledby="mobileNoticeTitle" aria-describedby="mobileNoticeText">
+    <div class="watermark" aria-hidden="true"></div>
     <h2 id="mobileNoticeTitle">Gunakan tampilan desktop</h2>
-    <p id="mobileNoticeText">Untuk melihat denah dan detail NARA dengan lebih leluasa, buka melalui laptop atau komputer.</p>
+    <p id="mobileNoticeText">Untuk melihat denah dan detail KATALHYS dengan lebih leluasa, buka melalui laptop atau komputer.</p>
     <p>Jika tetap menggunakan HP, aktifkan <strong>Situs desktop / Minta Situs Desktop</strong> melalui menu browser, lalu putar layar ke posisi mendatar.</p>
     <form method="dialog"><button autofocus>Lanjutkan di perangkat ini</button></form>
   </dialog>
-  <script src="app.bundle.js?v=nara-20261026-1"></script>
+  <script src="app.bundle.js?v=katalhys-watermark-20261026"></script>
 </body>
 </html>
