@@ -1,12 +1,30 @@
-# Elora: arah tampilan
+# NARA Dental Studio: arah tampilan
 
-Tampilan klinik Scandinavian dengan putih hangat, kayu, dan hijau sage mengikuti viewer yang sudah ada serta gambar referensi pengguna. Perubahan sesi ini terbatas pada posisi kanvas, sinar matahari, dan dialog mobile.
+Konsep portofolio fiktif dengan pendekatan katalog interior: tipografi tenang, daftar ruang bernomor, dan palet tanah yang menyatu dengan scene.
 
-- Layout: sidebar 330px dan panel 3D fleksibel; di bawah 850px panel berada di atas daftar ruang.
-- Kanvas: `#scene`, lebar/tinggi CSS 100% panel; resolusi drawing buffer mengikuti device pixel ratio secara terpisah.
-- Dialog: native `dialog`, latar `#f9faf7`, teks `#173c33` / `#435d50`, tombol hijau dengan tinggi minimal 48px; label, deskripsi, autofocus, dan Escape memakai perilaku browser.
-- Typography: mengikuti font yang sudah digunakan viewer; dialog menggunakan judul Georgia dan body dari halaman.
-- Lighting: matahari hangat `#ffdfad`, arah miring, ambient lembut, satu shadow map 2048², empat lampu lokal tanpa shadow map.
-- Tidak menambahkan animasi dialog atau dependensi UI.
+## Identitas dan palet
+
+- Nama tampilan: NARA Dental Studio; penanda PORTOFOLIO / 001.
+- Ink `#3d3028`, terracotta `#a45138`, paper `#faf5ed`, cream `#eee2d1`, muted `#746356`.
+- Area luar, background scene, dan fog menggunakan cream. Tidak ada tepi atau latar sage.
+- Upholstery teal dipetakan ke `#a65d46`; biru ke `#967864`; coral ke `#c08464`.
+- Lobi/klinis memakai lantai batu dengan bintik halus; konsultasi dan staf memakai kayu bernuansa walnut.
+
+## Tipografi dan layout
+
+- Judul NARA memakai Georgia; body Trebuchet MS dengan fallback Segoe UI. Tidak memuat font eksternal agar tetap offline.
+- Sidebar 320px, atau 290px pada desktop sempit, dengan garis pemisah dan daftar ruang berluas.
+- Tidak memakai logo klinik nyata, testimoni, rencana personel, atau klaim bisnis.
+- Di bawah 850px, model berada di atas sidebar dan dialog desktop muncul otomatis.
+- Label, deskripsi, fokus, Escape, dan focus trap dialog memakai elemen native.
+- Kanvas `#scene` selalu berukuran CSS 100% panel. Drawing buffer mengikuti pixel ratio secara terpisah.
+
+## Denah
+
+Lobi diperluas ke lebar 9m, konsultasi mulai x=9m, lounge staf mulai x=13m. Radiografi pindah ke tengah kiri; suite 01 ke belakang kiri. Gudang pindah ke tengah kanan, sterilisasi ke belakang kanan. Isi ruangan berpindah bersama; lis dinding mengikuti geometri partisi.
+
+## Cahaya dan gerak
+
+Matahari hangat miring, satu shadow map 2048², ambient lembut, dan empat lampu lokal tanpa shadow map. Render berhenti saat diam. Tidak menambahkan animasi dekoratif atau dependensi UI.
 
 Terakhir diperbarui: 26 Oktober 2026.

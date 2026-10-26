@@ -32,6 +32,11 @@ const canvas=document.getElementById('viewport').children[0];
 assert.equal(canvas.id,'scene','Canvas must receive the CSS sizing rule at non-1 device pixel ratios');
 const html=await readFile(new URL('../index.html',import.meta.url),'utf8');
 assert.match(html,/#scene\{[^}]*width:100%;[^}]*height:100%/,'Canvas CSS must fit its panel');
+assert.doesNotMatch(html,/elora/i,'Portfolio must use its own identity');
+assert.match(html,/<title>NARA Dental Studio/);
+assert.equal(clinic.scene.background.getHexString(),'eee2d1');
+assert.equal(clinic.scene.fog.color.getHexString(),'eee2d1');
+assert.equal(clinic.scene.getObjectByName('exterior-ground').material.color.getHexString(),'eee2d1');
 const notice=document.getElementById('mobileNotice');
 assert.equal(notice.open,false,'Desktop must not show the mobile notice');
 mediaQuery.matches=true;clinic.updateMobileNotice();assert.equal(notice.open,true,'Narrow screens must show the notice');
@@ -41,6 +46,26 @@ assert.equal(notice.open,false,'Dismissed notice must stay closed for this visit
 const assets=clinic.props.children.filter(o=>o.userData.asset);
 assert.ok(assets.length>100,'Detailed room furnishings must load');
 assert.equal(Object.keys(MODEL_DATA).length,56);
+const rooms=new Map(clinic.spaces.map(room=>[room.id,room]));
+assert.equal(rooms.get('waiting').w,9,'Lobby must use the expanded layout');
+assert.equal(rooms.get('staff').w,3,'Front partitions must follow the new layout');
+assert.equal(rooms.get('xray').z,5);
+assert.equal(rooms.get('unit1').z,8.5);
+assert.equal(rooms.get('sterile').z,8.5);
+assert.equal(clinic.spaces.reduce((area,r)=>area+r.w*r.d,0),216);
+for(const [index,a] of clinic.spaces.entries())for(const b of clinic.spaces.slice(index+1)){
+ const overlapWidth=Math.min(a.x+a.w,b.x+b.w)-Math.max(a.x,b.x);
+ const overlapDepth=Math.min(a.z+a.d,b.z+b.d)-Math.max(a.z,b.z);
+ assert.ok(overlapWidth<=0||overlapDepth<=0,`${a.id} overlaps ${b.id}`);
+}
+for(const [name,roomId] of [['xray_arm','xray'],['autoclave','sterile'],['jaw_model','consult'],['staff_fridge','staff']]){
+ const asset=assets.find(o=>o.name===name),room=rooms.get(roomId);
+ assert.ok(asset.position.x+9>room.x&&asset.position.x+9<room.x+room.w&&asset.position.z+6>room.z&&asset.position.z+6<room.z+room.d,`${name} must move with ${roomId}`);
+}
+const upholstery=[];
+clinic.props.traverse(o=>{if(o.isMesh)for(const material of(Array.isArray(o.material)?o.material:[o.material]))if(material.name==='teal')upholstery.push(material.color.getHexString());});
+assert.ok(upholstery.length>0);
+assert.ok(upholstery.every(color=>color==='a65d46'),'Furniture accents must use the portfolio palette');
 for(const asset of assets){
  const box=new THREE.Box3().setFromObject(asset);
  assert.ok(Number.isFinite(box.min.x)&&!box.isEmpty(),`${asset.name}: invalid geometry`);

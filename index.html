@@ -3,42 +3,114 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#0e2522"/>
-  <title>Elora Smile Clinic — Architectural Explorer</title>
+  <meta name="theme-color" content="#eee2d1"/>
+  <meta name="description" content="NARA Dental Studio, studi konsep interior klinik gigi interaktif untuk portofolio visualisasi 3D."/>
+  <title>NARA Dental Studio | Portofolio Interior 3D</title>
   <style>
-    :root{color-scheme:light;--dark:#0f2824;--deep:#173c33;--sage:#739787;--line:#e4e8e1;--paper:#f9faf7;--muted:#7d8e84;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}*{box-sizing:border-box}html,body{height:100%;margin:0}body{background:#e9eee9;color:var(--dark)}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #86bba6;outline-offset:2px}.shell{height:100dvh;min-height:670px;display:grid;grid-template-columns:330px minmax(0,1fr);gap:11px;padding:11px}.sidebar,.main{border-radius:16px;overflow:hidden}.sidebar{background:#fbfcfa;padding:26px 22px 17px;display:flex;flex-direction:column;border:1px solid #e4eae5;box-shadow:0 8px 40px #1a42330a}.monogram{width:41px;height:41px;background:var(--dark);color:white;border-radius:10px;display:grid;place-items:center;font:italic 29px Georgia,serif}.brandline{display:flex;align-items:center;gap:11px}.brand{font:600 20px Georgia,serif;letter-spacing:-.04em;color:#18392f}.brand i{font-weight:400}.subbrand{font-size:10px;letter-spacing:.18em;font-weight:750;color:#78978a;margin-top:4px}.hair{height:1px;background:var(--line);margin:21px 0}.eyebrow{font-size:10px;font-weight:800;letter-spacing:.16em;color:#8c9e94}.headline{font:500 35px/1.08 Georgia,serif;letter-spacing:-.045em;margin:12px 0 8px}.intro{font-size:12px;line-height:1.65;color:#75877e;margin-bottom:1px}.control-tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;padding:5px;background:#eaf0ea;border-radius:12px;margin:13px 0}.control-tabs button{border:0;background:none;border-radius:8px;color:#72897b;padding:10px 4px;font-size:11px;font-weight:750}.control-tabs button.active{background:white;color:#194936;box-shadow:0 2px 9px #1a43251c}.rooms{display:grid;grid-template-columns:1fr;gap:4px;overflow-y:auto;min-height:90px;max-height:calc(100vh - 520px);padding-right:5px}.room{width:100%;border:1px solid transparent;border-radius:9px;padding:10px 8px;background:transparent;display:flex;gap:10px;text-align:left;align-items:center;color:#657a6d;font-size:12px}.room.active,.room:hover{background:#eaf1ec;color:#1b4b37}.room.active{border-color:#d7e5d9;font-weight:750}.dot{width:9px;height:9px;flex:none;border-radius:3px}.num{font-size:10px;color:#a3b0a6;margin-left:auto}.details{background:#f0f5f0;border:1px solid #e1ece1;border-radius:12px;padding:14px 15px;margin-top:13px;min-height:104px}.details strong{display:block;font-size:13px;color:#2e5847}.details p{color:#73877c;margin:6px 0 0;font-size:11px;line-height:1.65}.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:auto;padding-top:16px}.fact{border-top:1px solid var(--line);padding-top:12px}.fact b{display:block;font-size:20px;color:#294c3f}.fact span{display:block;color:#87978d;font-size:10px;margin-top:3px}.disclaimer{color:#9ca9a0;font-size:9px;line-height:1.5;margin-top:13px}.main{position:relative;background:#e6ebe4;box-shadow:0 15px 55px #1543310d}.viewport{position:absolute;inset:0}#scene{width:100%;height:100%;display:block;touch-action:none}.topbar{position:absolute;top:27px;left:30px;right:30px;display:flex;justify-content:space-between;align-items:flex-start;gap:18px;pointer-events:none}.topbar>*{pointer-events:auto}.toplabel{background:#fffc;border:1px solid #e5ebe1;padding:13px 17px;border-radius:12px;backdrop-filter:blur(12px)}.toplabel strong{display:block;color:#294537;font-size:13px;letter-spacing:.03em}.toplabel small{display:block;font-size:10px;color:#8ca093;margin-top:5px}.toolbar{display:flex;gap:6px;flex-wrap:wrap;justify-content:end}.tool{border:1px solid #dde6dd;background:#fffffff0;color:#436556;border-radius:10px;padding:11px 12px;font-size:11px;font-weight:750;box-shadow:0 2px 8px #2440310b}.tool:hover{background:#e7f2ea}.bottom{position:absolute;bottom:25px;left:29px;right:29px;display:flex;justify-content:space-between;gap:10px;align-items:end;pointer-events:none}.bottom>*{pointer-events:auto}.bottom-note{font-size:11px;color:#779084;background:#fffffff0;padding:12px 14px;border-radius:11px;border:1px solid #e0e8de}.badge{font-size:10px;letter-spacing:.1em;color:#5e806e;background:#fffc;border:1px solid #e4eae3;padding:11px 12px;border-radius:10px}.loader{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(340px,80%);background:#fffffff2;border:1px solid #e3ebe1;box-shadow:0 15px 50px #123b2c18;padding:22px 25px;border-radius:16px;text-align:center;z-index:4}.loader strong{font:500 24px Georgia,serif;color:#264939}.loader p{font-size:11px;color:#829689}.track{height:5px;background:#e8eee7;margin-top:15px;border-radius:8px;overflow:hidden}.fill{height:100%;width:0%;background:#75a58e;transition:width .25s}.room-label{position:absolute;pointer-events:none;transform:translate(-50%,-50%);text-align:center;min-width:85px;color:#37584d;font-weight:800;font-size:10px;line-height:1.3;text-shadow:0 1px 3px #fff,0 -1px 3px #fff;display:none}.toast{position:absolute;top:100px;left:50%;transform:translateX(-50%);z-index:5;background:#254b3c;color:white;padding:11px 17px;border-radius:11px;font-size:12px;display:none;box-shadow:0 10px 25px #254b3c25}.unsupported{position:absolute;inset:0;display:none;place-items:center;background:#f6faf6;z-index:7;padding:25px;text-align:center}.unsupported p{max-width:410px;color:#637d6c;line-height:1.7;font-size:13px}.unsupported strong{font:500 26px Georgia,serif;color:#254a36}@media(max-width:850px){.shell{grid-template-columns:1fr;grid-template-rows:minmax(450px,70dvh) auto;height:auto;min-height:100dvh;padding:7px}.sidebar{grid-row:2;padding:18px}.main{grid-row:1}.rooms{grid-template-columns:repeat(2,minmax(0,1fr));max-height:none}.topbar{left:13px;right:13px;top:12px}.toplabel{padding:10px}.toolbar{max-width:200px}.tool{padding:9px;font-size:10px}.bottom{left:13px;right:13px;bottom:13px}.bottom-note{font-size:9px}.badge{display:none}.headline{font-size:27px}.hair{margin:14px 0}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
-    .desktop-notice{width:min(440px,calc(100% - 32px));max-height:calc(100dvh - 48px);overflow:auto;border:1px solid #cad8cd;border-radius:16px;background:#f9faf7;color:#173c33;padding:28px;box-shadow:0 20px 70px #173c3333}.desktop-notice::backdrop{background:#102b256b;backdrop-filter:blur(4px)}.desktop-notice h2{font:500 27px/1.2 Georgia,serif;margin:0 0 14px}.desktop-notice p{font-size:14px;line-height:1.65;color:#435d50;margin:0 0 14px}.desktop-notice button{width:100%;min-height:48px;border:0;border-radius:9px;background:#173c33;color:#f9faf7;padding:12px 16px;font-weight:650;margin-top:8px}
+    :root{color-scheme:light;--ink:#3d3028;--muted:#746356;--accent:#a45138;--line:#dfd0bf;--paper:#faf5ed;--cream:#eee2d1;font-family:"Trebuchet MS","Segoe UI",sans-serif}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{background:var(--cream);color:var(--ink)}
+    button{font:inherit;cursor:pointer}
+    button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+    .shell{height:100dvh;min-height:700px;display:grid;grid-template-columns:320px minmax(0,1fr)}
+    .sidebar{background:var(--paper);border-right:1px solid var(--line);padding:26px 24px 18px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+    .project-meta{display:flex;justify-content:space-between;color:var(--accent);font-size:10px;font-weight:700;letter-spacing:.11em}
+    .brandline{padding:25px 0 19px;border-bottom:1px solid var(--line)}
+    .brand{font:500 59px/.95 Georgia,serif;letter-spacing:-.07em;margin:0;color:var(--ink)}
+    .subbrand{font-size:11px;letter-spacing:.23em;margin-top:12px;font-weight:700}
+    .intro{font-size:12px;line-height:1.65;color:var(--muted);margin:15px 0 0;max-width:34ch}
+    .eyebrow{font-size:10px;letter-spacing:.1em;font-weight:700;color:var(--muted)}
+    .view-section{padding:20px 0 16px}
+    .control-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin-top:10px}
+    .control-tabs button{min-height:44px;border:1px solid var(--line);border-radius:5px;background:transparent;color:var(--muted);padding:8px 4px;font-size:12px}
+    .control-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+    .control-tabs button.active{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+    .directory{display:flex;flex-direction:column;flex:1;min-height:100px;border-top:1px solid var(--line);padding-top:17px}
+    .directory-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+    .directory-heading span:last-child{font-size:10px;color:var(--muted)}
+    .rooms{flex:1;overflow-y:auto;min-height:80px;scrollbar-width:thin;scrollbar-color:#cbb6a1 transparent;padding-right:3px}
+    .room{display:grid;grid-template-columns:24px minmax(0,1fr) auto;align-items:center;gap:7px;width:100%;min-height:43px;text-align:left;padding:9px 6px;border:0;border-bottom:1px solid #e9ded1;background:transparent;color:var(--ink);font-size:12px}
+    .room:hover,.room.active{background:#eddfd0;color:#853e2a;border-radius:4px}
+    .room.active{font-weight:700}
+    .num{font-size:10px;color:#88634e;font-variant-numeric:tabular-nums}
+    .area{font-size:10px;color:var(--muted);white-space:nowrap}
+    .details{padding:17px 0 13px;border-bottom:1px solid var(--line);min-height:100px}
+    .details strong{display:block;font:500 19px/1.3 Georgia,serif}
+    .details p{font-size:11px;line-height:1.65;color:var(--muted);margin:7px 0 0}
+    .facts{display:flex;justify-content:space-between;padding:17px 0 14px;gap:12px}
+    .fact b{display:block;font-size:19px;font-weight:500;font-variant-numeric:tabular-nums}
+    .fact span{display:block;font-size:10px;color:var(--muted);margin-top:4px}
+    .portfolio-note{font-size:10px;color:var(--accent);line-height:1.6;border-top:1px solid var(--line);padding-top:12px}
+    .main{position:relative;min-width:0;overflow:hidden;background:var(--cream)}
+    .viewport{position:absolute;inset:0}
+    #scene{width:100%;height:100%;display:block;touch-action:none}
+    .topbar{position:absolute;inset:25px 27px auto;display:flex;justify-content:space-between;align-items:flex-start;gap:18px;pointer-events:none}
+    .topbar>*{pointer-events:auto}
+    .toplabel{padding-top:4px}
+    .toplabel strong{display:block;font-size:11px;letter-spacing:.13em;font-weight:700;color:#5d4635}
+    .toplabel small{display:block;font-size:11px;color:#73604f;margin-top:8px;line-height:1.5}
+    .toolbar{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+    .tool{min-height:40px;border:1px solid #cfbda8;border-radius:5px;background:#faf5ede8;color:#5a4232;padding:10px 12px;font-size:11px;font-weight:600}
+    .tool:hover{background:#e4cfb8;border-color:#b59173}
+    .bottom{position:absolute;inset:auto 27px 22px;display:flex;justify-content:space-between;gap:18px;align-items:flex-end;pointer-events:none}
+    .bottom-note{font-size:10px;color:#695443;line-height:1.6}
+    .bottom-note strong{display:block;font-size:12px;font-weight:500;letter-spacing:.04em}
+    .badge{font-size:10px;letter-spacing:.08em;color:#725744;white-space:nowrap}
+    .loader{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(340px,80%);background:var(--paper);border:1px solid var(--line);padding:26px;box-shadow:0 15px 50px #704a2e18;border-radius:8px;text-align:center;z-index:4}
+    .loader strong{font:500 24px Georgia,serif}
+    .loader p{font-size:11px;color:var(--muted);line-height:1.5}
+    .track{height:3px;background:#e8dac9;margin-top:17px;overflow:hidden}
+    .fill{height:100%;width:0%;background:var(--accent)}
+    .room-label{position:absolute;pointer-events:none;transform:translate(-50%,-50%);text-align:center;min-width:85px;color:#523725;font-weight:700;font-size:10px;line-height:1.4;text-shadow:0 1px 3px #faf5ed,0 -1px 3px #faf5ed;display:none}
+    .unsupported{position:absolute;inset:0;display:none;place-items:center;background:var(--paper);z-index:7;padding:25px;text-align:center}
+    .unsupported p{max-width:410px;color:var(--muted);line-height:1.7;font-size:13px}
+    .unsupported strong{font:500 26px Georgia,serif}
+    .desktop-notice{width:min(440px,calc(100% - 32px));max-height:calc(100dvh - 48px);overflow:auto;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);padding:28px;box-shadow:0 20px 70px #5c392e33}
+    .desktop-notice::backdrop{background:#3d30286b;backdrop-filter:blur(4px)}
+    .desktop-notice h2{font:500 27px/1.2 Georgia,serif;margin:0 0 14px}
+    .desktop-notice p{font-size:14px;line-height:1.65;color:#685243;margin:0 0 14px}
+    .desktop-notice button{width:100%;min-height:48px;border:0;border-radius:5px;background:#713d2b;color:var(--paper);padding:12px 16px;font-weight:650;margin-top:8px}
+    @media(max-width:1100px) and (min-width:851px){.shell{grid-template-columns:290px minmax(0,1fr)}.sidebar{padding-inline:20px}.topbar{inset:22px 20px auto;flex-direction:column}.toolbar{justify-content:flex-start}.brand{font-size:53px}}
+    @media(max-width:850px){.shell{height:auto;min-height:100dvh;grid-template-columns:1fr;grid-template-rows:minmax(460px,70dvh) auto}.sidebar{grid-row:2;border-right:0;border-top:1px solid var(--line);padding:25px 22px}.main{grid-row:1}.brandline{padding-top:20px}.brand{font-size:50px}.intro{max-width:50ch}.directory{min-height:260px}.rooms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;overflow:visible}.room{min-height:48px}.area{display:none}.topbar{inset:18px 16px auto;flex-direction:column;gap:14px}.toolbar{justify-content:flex-start}.tool{min-height:44px}.toplabel small{font-size:10px}.bottom{inset:auto 16px 16px}.badge{display:none}.details{min-height:96px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
 <body>
   <div class="shell">
-    <aside class="sidebar">
-      <div class="brandline"><div class="monogram">e.</div><div><div class="brand">elora <i>smile clinic</i></div><div class="subbrand">ARCHITECTURAL STUDY / 2026</div></div></div>
-      <div class="hair"></div>
-      <div class="eyebrow">AN IMMERSIVE SPATIAL STUDY</div>
-      <h1 class="headline">Designed<br/>for comfort.</h1>
-      <div class="intro">Eksplorasi 3D klinik gigi dengan interior Scandinavian yang tenang, detail dental equipment, dan tata ruang yang terkoordinasi.</div>
-      <div class="control-tabs" role="group" aria-label="Mode kamera"><button data-view="3d" class="active">◇ 3D Orbit</button><button data-view="2d">▦ Floor Plan</button><button data-view="walk">◉ Eye Level</button></div>
-      <div class="eyebrow" style="margin:4px 0 9px">ROOM DIRECTORY <span id="count" style="float:right">10 SPACES</span></div>
-      <div class="rooms" id="roomList"></div>
-      <div class="details" aria-live="polite"><strong id="detailTitle">Explore the clinic</strong><p id="detailText">Pilih ruangan dari daftar atau klik langsung pada lantai model.</p></div>
-      <div class="facts"><div class="fact"><b>216<span style="font-size:12px"> m²</span></b><span>Luas asumsi</span></div><div class="fact"><b>03</b><span>Dental units</span></div><div class="fact"><b>14</b><span>Rencana personel</span></div></div>
-      <div class="disclaimer">Konsep akademik, bukan gambar konstruksi atau panduan pemenuhan izin fasilitas kesehatan.</div>
+    <aside class="sidebar" aria-label="Informasi proyek dan daftar ruang">
+      <div class="project-meta"><span>PORTOFOLIO / 001</span><span>2026</span></div>
+      <header class="brandline">
+        <h1 class="brand">NARA<span style="color:var(--accent)">.</span></h1>
+        <div class="subbrand">DENTAL STUDIO</div>
+        <p class="intro">Studi interior klinik gigi dalam nuansa tanah, batu, dan kayu. Jelajahi setiap ruang dari sudut pandang Anda.</p>
+      </header>
+      <section class="view-section" aria-label="Pilihan tampilan">
+        <div class="eyebrow">JELAJAHI MODEL</div>
+        <div class="control-tabs" role="group" aria-label="Mode kamera"><button data-view="3d" class="active">Orbit</button><button data-view="2d">Denah</button><button data-view="walk">Interior</button></div>
+      </section>
+      <section class="directory" aria-label="Daftar ruang">
+        <div class="directory-heading"><span class="eyebrow">DAFTAR RUANG</span><span id="count">10 ruang</span></div>
+        <div class="rooms" id="roomList"></div>
+      </section>
+      <div class="details" aria-live="polite"><strong id="detailTitle">Ruang yang dirancang untuk merawat.</strong><p id="detailText">Pilih ruang untuk melihat fungsi dan detail interiornya.</p></div>
+      <div class="facts"><div class="fact"><b>216 m²</b><span>Luas konsep</span></div><div class="fact"><b>03</b><span>Unit dental</span></div><div class="fact"><b>10</b><span>Ruang</span></div></div>
+      <div class="portfolio-note">Konsep fiktif untuk portofolio visualisasi 3D.<br/>Bukan rancangan konstruksi atau fasilitas berizin.</div>
     </aside>
-    <main class="main" id="stage">
+    <main class="main" id="stage" aria-label="Model 3D NARA Dental Studio">
       <div class="viewport" id="viewport"></div>
-      <div class="topbar"><div class="toplabel"><strong>ELORA — INTERIOR EXPLORER</strong><small id="viewHint">Drag to orbit · Scroll to zoom · Click to inspect</small></div><div class="toolbar"><button class="tool" id="wallBtn">◧ Cutaway walls</button><button class="tool" id="resetBtn">↺ Reset</button><button class="tool" id="pngBtn">↓ Save PNG</button></div></div>
-      <div class="bottom"><div class="bottom-note" id="bottomNote">Furniture-grade GLB assets · Realtime 3D · Entirely offline</div><div class="badge">STUDIO CONCEPT — V2.0</div></div>
-      <div class="loader" id="loader"><strong>Curating your space.</strong><p id="progressLabel">Preparing detailed 3D interiors…</p><div class="track"><div class="fill" id="progressBar"></div></div></div>
-      <div class="toast" id="toast"></div><div class="unsupported" id="unsupported"><div><strong>WebGL diperlukan</strong><p>Browser ini tidak dapat membuka renderer 3D. Gunakan Chrome, Edge, atau Safari dengan akselerasi grafis diaktifkan.</p></div></div>
+      <div class="topbar"><div class="toplabel"><strong>NARA / STUDI SPASIAL</strong><small id="viewHint">Geser untuk memutar · Gulir untuk memperbesar</small></div><div class="toolbar"><button class="tool" id="wallBtn">Dinding: rendah</button><button class="tool" id="resetBtn">Reset</button><button class="tool" id="pngBtn">Simpan PNG</button></div></div>
+      <div class="bottom"><div class="bottom-note"><strong>Terra collection</strong>Material hangat. Cahaya alami. Ruang untuk merawat.</div><div class="badge">KONSEP INTERIOR / 01</div></div>
+      <div class="loader" id="loader" role="status"><strong>Menyiapkan NARA.</strong><p id="progressLabel">Memuat model dan material interior…</p><div class="track"><div class="fill" id="progressBar"></div></div></div>
+      <div class="unsupported" id="unsupported"><div><strong>WebGL diperlukan</strong><p>Aktifkan akselerasi grafis atau gunakan browser yang mendukung WebGL untuk menjelajahi model.</p></div></div>
     </main>
   </div>
   <dialog id="mobileNotice" class="desktop-notice" aria-labelledby="mobileNoticeTitle" aria-describedby="mobileNoticeText">
     <h2 id="mobileNoticeTitle">Gunakan tampilan desktop</h2>
-    <p id="mobileNoticeText">Untuk melihat denah dan detail klinik dengan lebih leluasa, buka melalui laptop atau komputer.</p>
+    <p id="mobileNoticeText">Untuk melihat denah dan detail NARA dengan lebih leluasa, buka melalui laptop atau komputer.</p>
     <p>Jika tetap menggunakan HP, aktifkan <strong>Situs desktop / Minta Situs Desktop</strong> melalui menu browser, lalu putar layar ke posisi mendatar.</p>
     <form method="dialog"><button autofocus>Lanjutkan di perangkat ini</button></form>
   </dialog>
-  <script src="app.bundle.js?v=20261026-2"></script>
+  <script src="app.bundle.js?v=nara-20261026-1"></script>
 </body>
 </html>

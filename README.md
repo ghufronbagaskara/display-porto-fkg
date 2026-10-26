@@ -1,75 +1,61 @@
-# Elora Smile Clinic — Architectural Explorer V2
+# NARA Dental Studio
 
-## How to open
+Konsep fiktif klinik gigi untuk portofolio visualisasi 3D. Identitas, sidebar, palet terracotta-krem, material lantai, dan susunan ruang dibuat sebagai studi portofolio tersendiri.
 
-1. Extract the ZIP.
-2. Double-click `index.html` on Windows or macOS.
-3. Use a recent Edge, Chrome, Firefox, or Safari with WebGL2 enabled.
+## Membuka model
 
-**No network, npm install, dev server, login, or CDN is required to view the model.** `app.bundle.js` contains the 3D renderer and copies of all 56 GLB assets for direct `file://` operation. The separate original `.glb` files are provided for editing and reuse.
+Klik dua kali `index.html`. Bundle sudah memuat renderer dan 56 aset GLB, sehingga tidak memerlukan server, CDN, atau login. Browser perlu mendukung WebGL2. Versi `dist/index.html` juga dapat digunakan setelah build.
 
-### Controls
+- Orbit: putar dan perbesar model.
+- Denah: tampilan atas dengan label ruang.
+- Interior: sudut pandang rendah.
+- Pilih ruang melalui daftar atau lantainya.
+- Dinding: ganti tinggi dinding.
+- Reset: kembalikan kamera dan pilihan ruang.
+- Simpan PNG: ekspor gambar dengan nama Nara-Dental-Studio.
+- Pada layar di bawah 850px, dialog menyarankan penggunaan desktop.
 
-- 3D Orbit — drag to rotate and scroll to zoom.
-- Floor Plan — orthographic bird's-eye view with room labels.
-- Eye Level — lower-perspective view; drag to look around.
-- Cutaway / Full Walls — inspect rooms without wall occlusion.
-- Select a room via the sidebar or by clicking its floor; use Reset to start again.
-- Save PNG — save the current WebGL scene.
+## Pengembangan
 
-## Contents
+Proyek menggunakan JavaScript, Three.js, dan esbuild. Tidak memakai React atau Vite.
 
-```
-index.html              Browser UI
-app.bundle.js           Self-contained Three.js + glTF models
-assets/models/*.glb     Original editable 3D assets (56 models)
-src/main.js             Scene authoring source
-src/embedded-assets.js  Generated binary embedding source
-scripts/                Reproducible asset download / embedding helpers
-ASSET_LICENSES.json     Asset URLs and licences
-package.json            Dependency versions and build command
-```
-
-All included GLB models were published under **CC0 1.0 Universal** by 3DAssets.dev. They come from Dental Practice and Surgery, Home Appliances and Utility Room, Downtown Office Interiors, Fitted Kitchen and Bathroom Builder, Hospital Wards and Clinic Operations, and Clinic and Veterinary Practice. Sources, dimensions, triangle counts, and licences are in `ASSET_LICENSES.json`. These are creator-reported AI-generated assets, not manufacturer CAD models.
-
-### Developer workflow
-
-For changes to `src/main.js`:
-
-```
+```powershell
 npm install
-npm run build
 npm test
+npm run build
 ```
 
-The build bundles Three.js and the embedded local model payload. No runtime requests to a CDN.
+Build memperbarui `app.bundle.js` dan menyalin HTML serta bundle ke `dist/`. Tidak ada dependensi baru untuk perubahan identitas dan layout ini.
 
-### Deploy to Vercel
+## Deploy Vercel
 
-This is a static Three.js site built with esbuild, **not Vite or React**. Import the repository into Vercel and set Root Directory to `elora_klinik_dental` (or `.` when importing that folder as its own repository). Select Framework Preset **Other**. The included `vercel.json` sets Build Command to `npm run build` and Output Directory to `dist`. The postbuild step copies only `index.html` and the self-contained `app.bundle.js` into `dist`.
+Repository ini berisi `package.json` dan `index.html` langsung di root.
 
-You can still double-click the project's `index.html`, or `dist/index.html`, after building. Both use a classic bundled script with embedded models and no runtime server requests. A Vite migration is not required for Vercel deployment.
+| Pengaturan | Nilai |
+| --- | --- |
+| Root Directory | `.` |
+| Framework Preset | Other |
+| Build Command | `npm run build` |
+| Output Directory | `dist` |
 
-To refresh the downloaded assets, run `python scripts/fetch_assets.py`, then `python scripts/embed_assets.py`, then rebuild. The downloader checks the source licence and byte length. Cached API manifests retain the asset metadata used for the download.
+`vercel.json` sudah mengatur framework, build, dan output. Output publik hanya berisi HTML dan bundle. Tidak perlu menjalankan skrip pengunduh aset saat deployment.
 
-## Interior enhancement, 26 October 2026
+## Susunan ruang
 
-Radiography now contains an intraoral X-ray arm mounted against the wall, patient chair, sensor tray on the worktop, viewing screen, operator workstation, apron representation, warning sign, and split AC. This is an intraoral room, not a panoramic/CBCT installation; premium panoramic model candidates are linked in `ENHANCEMENT_NOTES.md`.
+Lobi seluas 31,5 m² menempati bagian depan, diikuti konsultasi 14 m², lounge staf 10,5 m², dan toilet 7 m². Radiografi dan gudang berada di bagian tengah. Suite perawatan 01 dan 03 serta sterilisasi berada di belakang; suite 02 di tengah. Dua koridor menghubungkan seluruh zona.
 
-Consultation has doctor/visitor seating, a computer, teaching jaw model, and records. Staff space has seating, lockers, a fridge, and kettle. Treatment rooms include countertop instruments and dispensers. Sterilization includes a sink and instrument processing equipment. The toilet has a WC, basin, mirror, paper holder, and bin. Storage has stocked shelving. Repeated furniture shares loaded GLB geometry and materials.
+Ukuran keseluruhan 18 × 12 m, dengan tiga unit dental dan sepuluh ruang di luar koridor. Ini dimensi konsep, bukan hasil pengukuran bangunan.
 
-Timber/tile floor textures, skirting, a warm sun, cool fill, and four local lights provide more material definition. Ceiling panels appear in Eye Level; orbit and plan views hide them to keep rooms visible.
+## Aset dan lisensi
 
-The camera now fits the clinic to the actual viewport aspect ratio. A `ResizeObserver` catches changes to the preview panel as well as window changes; switching views resets zoom, and Reset clears the selection and camera target. The renderer skips drawing while idle and reuses one static sunlight shadow map, invalidated when geometry or wall visibility changes.
+56 model dari 3DAssets.dev menggunakan CC0 1.0 Universal menurut metadata penerbit. URL sumber, lisensi, dimensi, dan jumlah segitiga dicatat dalam `ASSET_LICENSES.json`. Penerbit menandai aset sebagai dibuat dengan bantuan AI; ini properti visual, bukan CAD vendor yang diverifikasi.
 
-`npm test` parses the actual GLBs and checks room boundaries, floor placement, responsive camera framing, view changes, Reset, idle rendering, the canvas sizing hook, and mobile notice behavior with DOM/WebGL stand-ins. Browser verification is recorded in `ENHANCEMENT_NOTES.md`.
+Paket sumber: Dental Practice and Surgery, Home Appliances and Utility Room, Downtown Office Interiors, Fitted Kitchen and Bathroom Builder, Hospital Wards and Clinic Operations, serta Clinic and Veterinary Practice. Warna material pada GLB dipetakan ulang di source scene; file model asli dipertahankan.
 
-The canvas now receives its `scene` ID so its CSS size matches the viewport instead of its high-DPI drawing buffer. Before this fix, a 1.25 device pixel ratio produced a 1525px-wide canvas in a 1220px-wide panel, shifting the apparent scene center. The in-app browser confirmed matching panel/canvas bounds after the fix. Sunlight now has a lower angle, warmer color, and a 2048² shadow map; ambient/fill intensity is reduced for more visible directional shadows.
+Untuk mengunduh ulang, jalankan `python scripts/fetch_assets.py`, `python scripts/embed_assets.py`, lalu build. Cache katalog tidak dimasukkan ke Git.
 
-Below 850 CSS pixels, a native dialog recommends a laptop/desktop or the browser's desktop-site setting. It appears automatically, supports keyboard dismissal, and stays dismissed for the current visit. Resizing to desktop closes it. The site cannot change the browser's desktop-site setting itself.
+## Verifikasi dan batas
 
-## Spatial assumptions and limitations
+`npm test` memeriksa parsing GLB, batas furnitur, perpindahan alat ke ruang yang benar, luas dan overlap ruang, warna scene/material, sizing kanvas, dialog mobile, kamera responsif, Reset, dan render saat diam. DOM dan WebGL pada tes Node memakai stand-in; pemeriksaan browser dicatat dalam `ENHANCEMENT_NOTES.md`.
 
-The site and building dimensions are **assumptions**, not given in the supplied source report: 18 × 12m = 216m², one storey, 2.8m visualized wall height. The program follows the Elora Smile Clinic business plan's three dental units and patient-centered/Scandinavian concept. It includes a reception/waiting area, consultation, three treatment rooms, sterilization, radiography, staff, toilet, storage/utilities, and patient corridors.
-
-The result is a **visual study for an academic task**, not a licensed architectural or medical-facility construction drawing. In particular, this scene does not establish compliance with Indonesian rules for infection prevention, instrument dirty-clean segregation, accessible movement and toilets, radiation shielding, fire and emergency egress, HVAC, medical waste handling, and supporting utilities. A licensed professional must review those systems before real implementation.
+Model ini bukan gambar konstruksi, panduan perizinan, atau desain fasilitas medis yang telah ditinjau profesional. Shielding, sanitasi, aksesibilitas bangunan, alur steril, HVAC, dan utilitas memerlukan perancangan terpisah sebelum digunakan pada bangunan nyata.
